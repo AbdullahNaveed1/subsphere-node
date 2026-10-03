@@ -1,0 +1,9 @@
+{
+  "name": "@subsphere/node",
+  "version": "0.1.0",
+  "description": "SubSphere Node SDK — payments infrastructure for Pakistani SaaS",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "license": "MIT",
+  "files": ["index.js", "index.d.ts", "README.md"]
+}
