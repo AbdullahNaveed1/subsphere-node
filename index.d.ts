@@ -1,10 +1,11 @@
-﻿export interface CreatePaymentParams {
+export interface CreatePaymentParams {
   amount: number;
   method: 'card' | 'raast' | 'jazzcash' | 'easypaisa' | string;
   currency?: string;
   provider?: string;
   customerEmail?: string;
   metadata?: Record<string, any>;
+  simulate?: 'succeeded' | 'failed' | 'pending';
 }
 
 export interface Payment {
