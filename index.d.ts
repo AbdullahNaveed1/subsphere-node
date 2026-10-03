@@ -74,6 +74,11 @@ export class SubSphere {
     events(): Promise<WebhookEvent[]>;
     replay(eventId: string): Promise<{ ok: boolean; eventId: string }>;
   };
+  payouts: {
+    create(params: { amountCents: number; destination: string; method?: string }): Promise<any>;
+    list(): Promise<any[]>;
+    get(id: string): Promise<any>;
+  };
   ledger: {
     balance(): Promise<{ balanceCents: number }>;
     entries(opts?: { limit?: number }): Promise<any[]>;
