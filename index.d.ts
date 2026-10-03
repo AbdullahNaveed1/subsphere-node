@@ -54,5 +54,25 @@ export class SubSphere {
     list(opts?: { since?: string }): Promise<WebhookEvent[]>;
     trigger(type: string, data?: any): Promise<{ id: string; type: string }>;
   };
+  subscriptions: {
+    create(params: { planId: string }): Promise<any>;
+    get(): Promise<any>;
+    cancel(): Promise<any>;
+  };
+  invoices: {
+    list(): Promise<any[]>;
+    get(id: string): Promise<any>;
+    pay(id: string, method?: string): Promise<any>;
+  };
+  plans: {
+    list(): Promise<any[]>;
+    get(id: string): Promise<any>;
+  };
+  webhooks: {
+    setEndpoint(url: string, events: string[]): Promise<any>;
+    getEndpoint(): Promise<any>;
+    events(): Promise<WebhookEvent[]>;
+    replay(eventId: string): Promise<{ ok: boolean; eventId: string }>;
+  };
   static verifyWebhook(rawBody: string | Buffer, signatureHeader: string, secret: string): boolean;
 }

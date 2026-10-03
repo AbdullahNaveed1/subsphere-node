@@ -32,6 +32,26 @@ class SubSphere {
       list: (opts = {}) => this._request('GET', '/v1/events' + (opts.since ? '?since=' + encodeURIComponent(opts.since) : '')),
       trigger: (type, data) => this._request('POST', '/v1/events/trigger', { type, data })
     };
+    this.subscriptions = {
+      create: (params) => this._request('POST', '/subscriptions', params),
+      get: () => this._request('GET', '/subscriptions/me'),
+      cancel: () => this._request('DELETE', '/subscriptions/me')
+    };
+    this.invoices = {
+      list: () => this._request('GET', '/invoices'),
+      get: (id) => this._request('GET', '/invoices/' + id),
+      pay: (id, method) => this._request('POST', '/invoices/' + id + '/pay', { method })
+    };
+    this.plans = {
+      list: () => this._request('GET', '/plans'),
+      get: (id) => this._request('GET', '/plans/' + id)
+    };
+    this.webhooks = {
+      setEndpoint: (url, events) => this._request('POST', '/webhooks/endpoint', { url, events }),
+      getEndpoint: () => this._request('GET', '/webhooks/endpoint'),
+      events: () => this._request('GET', '/webhooks/events'),
+      replay: (eventId) => this._request('POST', '/webhooks/events/' + eventId + '/replay')
+    };
   }
 
   async _request(method, path, body, opts = {}) {
