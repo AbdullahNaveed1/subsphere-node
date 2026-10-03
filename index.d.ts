@@ -74,5 +74,9 @@ export class SubSphere {
     events(): Promise<WebhookEvent[]>;
     replay(eventId: string): Promise<{ ok: boolean; eventId: string }>;
   };
+  ledger: {
+    balance(): Promise<{ balanceCents: number }>;
+    entries(opts?: { limit?: number }): Promise<any[]>;
+  };
   static verifyWebhook(rawBody: string | Buffer, signatureHeader: string, secret: string): boolean;
 }

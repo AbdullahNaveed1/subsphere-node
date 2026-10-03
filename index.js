@@ -46,6 +46,10 @@ class SubSphere {
       list: () => this._request('GET', '/plans'),
       get: (id) => this._request('GET', '/plans/' + id)
     };
+    this.ledger = {
+      balance: () => this._request('GET', '/v1/ledger/balance'),
+      entries: (opts = {}) => this._request('GET', '/v1/ledger/entries' + (opts.limit ? '?limit=' + opts.limit : ''))
+    };
     this.coupons = {
       create: (params) => this._request('POST', '/v1/coupons', params),
       list: () => this._request('GET', '/v1/coupons')
