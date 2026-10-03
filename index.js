@@ -33,18 +33,22 @@ class SubSphere {
       trigger: (type, data) => this._request('POST', '/v1/events/trigger', { type, data })
     };
     this.subscriptions = {
-      create: (params) => this._request('POST', '/subscriptions', params),
-      get: () => this._request('GET', '/subscriptions/me'),
-      cancel: () => this._request('DELETE', '/subscriptions/me')
+      create: (params) => this._request('POST', '/v1/subscriptions', params),
+      get: () => this._request('GET', '/v1/subscriptions/me'),
+      cancel: () => this._request('DELETE', '/v1/subscriptions/me')
     };
     this.invoices = {
-      list: () => this._request('GET', '/invoices'),
-      get: (id) => this._request('GET', '/invoices/' + id),
-      pay: (id, method) => this._request('POST', '/invoices/' + id + '/pay', { method })
+      list: () => this._request('GET', '/v1/invoices'),
+      get: (id) => this._request('GET', '/v1/invoices/' + id),
+      pay: (id, method) => this._request('POST', '/v1/invoices/' + id + '/pay', { method })
     };
     this.plans = {
       list: () => this._request('GET', '/plans'),
       get: (id) => this._request('GET', '/plans/' + id)
+    };
+    this.coupons = {
+      create: (params) => this._request('POST', '/v1/coupons', params),
+      list: () => this._request('GET', '/v1/coupons')
     };
     this.paymentLinks = {
       create: (params) => this._request('POST', '/v1/payment_links', params),
