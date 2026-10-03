@@ -1,4 +1,4 @@
-﻿const http = require('http');
+const http = require('http');
 const https = require('https');
 const crypto = require('crypto');
 
@@ -23,6 +23,14 @@ class SubSphere {
       list: () => this._request('GET', '/v1/customers'),
       get: (id) => this._request('GET', '/v1/customers/' + id),
       remove: (id) => this._request('DELETE', '/v1/customers/' + id)
+    };
+    this.checkout = {
+      create: (params) => this._request('POST', '/v1/checkout_sessions', params),
+      get: (token) => this._request('GET', '/v1/checkout_sessions/' + token)
+    };
+    this.events = {
+      list: (opts = {}) => this._request('GET', '/v1/events' + (opts.since ? '?since=' + encodeURIComponent(opts.since) : '')),
+      trigger: (type, data) => this._request('POST', '/v1/events/trigger', { type, data })
     };
   }
 
