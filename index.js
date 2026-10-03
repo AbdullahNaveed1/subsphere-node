@@ -46,6 +46,10 @@ class SubSphere {
       list: () => this._request('GET', '/plans'),
       get: (id) => this._request('GET', '/plans/' + id)
     };
+    this.paymentLinks = {
+      create: (params) => this._request('POST', '/v1/payment_links', params),
+      list: () => this._request('GET', '/v1/payment_links')
+    };
     this.webhooks = {
       setEndpoint: (url, events) => this._request('POST', '/webhooks/endpoint', { url, events }),
       getEndpoint: () => this._request('GET', '/webhooks/endpoint'),
